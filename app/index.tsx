@@ -58,16 +58,7 @@ const WelcomeScreen = (props: Props) => {
               </Text>
             </View>
 
-            <Link href={"/signin"} asChild>
-              <TouchableOpacity>
-                <Text>Go to SignIn Screen</Text>
-              </TouchableOpacity>
-            </Link>
-            <Link href={"/signup"} asChild>
-              <TouchableOpacity>
-                <Text>Go to SignUp Screen</Text>
-              </TouchableOpacity>
-            </Link>
+            
           </LinearGradient>
         </View>
       </ImageBackground>

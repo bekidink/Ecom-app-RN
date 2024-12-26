@@ -1,64 +1,65 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useState } from "react";
+import { CategoryType, ProductType } from "@/types/type";
+import {
+  categoriesData,
+  productsData,
+  saleProductsData,
+} from "@/constants copy/dummyData";
+import React from "react";
+import { Stack } from "expo-router";
+import Header from "@/components/shared/Header";
+import ProductItem from "@/components/shared/ProductItem";
+import { Colors } from "@/constants copy/Colors";
+import ProductList from "@/components/shared/ProductList";
+import Categories from "@/components/shared/Categories";
+import FlashSale from "@/components/shared/FlashSale";
 
 export default function HomeScreen() {
+  const [products, setProducts] = useState<ProductType[]>(productsData);
+  const [categories, setCategories] = useState<CategoryType[]>(categoriesData);
+  const [saleProducts, setSaleProducts] =
+    useState<ProductType[]>(saleProductsData);
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <>
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <Header />,
+        }}
+      />
+      <ScrollView>
+        <Categories categories={categories} />
+        <FlashSale products={saleProducts} />
+        <View style={{ marginHorizontal: 20, marginBottom: 10 }}>
+          <Image
+            source={require("@/assets/images/sale-banner.jpg")}
+            style={{ width: "100%", height: 150, borderRadius: 15 }}
+          />
+        </View>
+        <ProductList products={products} flatList={false} />
+      </ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    marginHorizontal: 20,
   },
   stepContainer: {
     gap: 8,
@@ -69,6 +70,21 @@ const styles = StyleSheet.create({
     width: 290,
     bottom: 0,
     left: 0,
-    position: 'absolute',
+    position: "absolute",
+  },
+  titleWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "600",
+    letterSpacing: 0.6,
+    color: Colors.black,
+  },
+  titleBtn: {
+    fontSize: 14,
+    fontWeight: "500",
   },
 });

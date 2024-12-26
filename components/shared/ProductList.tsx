@@ -28,7 +28,7 @@ const ProductList = ({ products, flatList = true }: Props) => {
           data={products}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
-            <ProductItem item={item} index={index} />
+            <ProductItem item={item} index={index} productType="regular" />
           )}
           numColumns={2}
           columnWrapperStyle={{
@@ -40,7 +40,7 @@ const ProductList = ({ products, flatList = true }: Props) => {
         <View style={styles.itemsWrapper}>
           {products.map((item, index) => (
             <View style={styles.productWrapper} key={index}>
-              <ProductItem item={item} index={index} />
+              <ProductItem item={item} index={index} productType="regular"/>
             </View>
           ))}
         </View>

@@ -8,11 +8,18 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 type Props = {
   item: ProductType;
   index: number;
+  productType:"sale"|"regular"
 };
 const width = Dimensions.get("window").width - 40;
-const ProductItem = ({ item, index }: Props) => {
+const ProductItem = ({ item, index,productType }: Props) => {
   return (
-    <Link href={`/product-details/${item.id}`}>
+    <Link
+      href={{
+        pathname: "/product-details/[id]",
+        params: { id: item.id,productType:productType },
+      }}
+      asChild
+    >
       <TouchableOpacity>
         <Animated.View
           style={styles.container}

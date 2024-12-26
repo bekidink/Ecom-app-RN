@@ -13,6 +13,7 @@ import {
   FlatList,
   Text,
 } from "react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
 
 export default function ExploreScreen() {
   const [categories, setCategories] = useState<CategoryType[]>(categoriesData);
@@ -26,13 +27,17 @@ export default function ExploreScreen() {
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item, index }) => (
-            <View style={styles.itemWrapper}>
+            <Animated.View
+              entering={FadeInDown.delay(300 + index + 100).duration(500)}
+              style={styles.itemWrapper}
+              key={index}
+            >
               <Text style={styles.itemTitle}>{item.name}</Text>
               <Image
                 source={{ uri: item.image }}
-                style={{ width: 100, height: 100,borderRadius:10 }}
+                style={{ width: 100, height: 100, borderRadius: 10 }}
               />
-            </View>
+            </Animated.View>
           )}
         />
       </View>

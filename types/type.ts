@@ -33,3 +33,19 @@ export interface NotificationType {
   message: string;
   timestamp: string;
 }
+
+
+
+
+
+export  type SaleItemType = {
+  id: string;
+  productId: string;
+  discount: number;
+  salePrice: number;
+  startDate: string;
+  endDate: string;
+  createdAt: string;
+  updatedAt: string;
+  product: ProductType;
+};

@@ -1,133 +1,135 @@
 import {
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
   View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { Link, Stack } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
-import { Colors } from "@/constants copy/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import Google from "@/assets/images/google-logo.svg";
-import Animated, { FadeInDown, FadeInRight } from "react-native-reanimated";
-import SocialButton from "@/components/shared/SocialButton";
-type Props = {};
-
-const WelcomeScreen = (props: Props) => {
+import color from "@/themes/app.colors";
+import Swiper from "react-native-swiper";
+import { commonStyles } from "@/styles/common.style";
+import { external } from "@/styles/external.style";
+import { fontSizes, windowHeight, windowWidth } from "@/themes/app.constant";
+import fonts from "@/themes/app.fonts";
+import { StyleSheet } from "react-native";
+import { slides } from "@/configs/constants";
+import Images from "@/utils/images";
+import { router } from "expo-router";
+import { BackArrow } from "@/utils/icons";
+export default function index() {
   return (
-    <>
-      <Stack.Screen options={{ headerShown: false }} />
-      <ImageBackground
-        source={require("@/assets/images/ecommerce-splash.jpg")}
-        style={{ flex: 1 }}
-        resizeMode="cover"
+    <View style={{ flex: 1, backgroundColor: color.whiteColor }}>
+      <Swiper
+        activeDotStyle={styles.activeStyle}
+        removeClippedSubviews={true}
+        paginationStyle={styles.paginationStyle}
       >
-        <View style={styles.container}>
-          <LinearGradient
-            style={styles.background}
-            colors={[
-              "transparent",
-              "rgba(255,255,255,0.9)",
-              "rgba(255,255,255,0.1)",
-            ]}
-          >
-            <View style={styles.wrapper}>
-              <Animated.Text
-                entering={FadeInRight.delay(300).duration(300).springify()}
-                style={styles.title}
+        {slides.map((silde: any, index: number) => (
+          <View style={[styles.slideContainer]} key={index}>
+            <Image style={styles.imageBackground} source={silde.image} />
+            <View style={[styles.imageBgView]}>
+              <ImageBackground
+                resizeMode="stretch"
+                style={styles.img}
+                source={Images.bgOnboarding}
               >
-                ShopE
-              </Animated.Text>
-              <Animated.Text
-                style={styles.description}
-                entering={FadeInRight.delay(500).duration(300).springify()}
-              >
-                One Stop Solution for All your needs
-              </Animated.Text>
-             <SocialButton emailHref={'/(tabs)'}/>
-              <Text style={styles.loginText}>
-                Already have an account? {""}
-                <Link href={"/signin"} asChild>
-                  <TouchableOpacity>
-                    <Text style={styles.loginTxtSpan}>SignIn</Text>
-                  </TouchableOpacity>
-                </Link>
-              </Text>
+                <Text style={styles.title}>{silde.text}</Text>
+                <Text style={styles.description}>{silde.description}</Text>
+                <TouchableOpacity
+                  style={styles.backArrow}
+                  onPress={() => router.push("/(auth)/sign-in")}
+                >
+                  <BackArrow colors={color.whiteColor} width={21} height={21} />
+                </TouchableOpacity>
+              </ImageBackground>
             </View>
-
-            
-          </LinearGradient>
-        </View>
-      </ImageBackground>
-    </>
+          </View>
+        ))}
+      </Swiper>
+    </View>
   );
-};
-
-export default WelcomeScreen;
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  slideContainer: {
+    ...commonStyles.flexContainer,
   },
-  background: {
-    flex: 1,
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: "flex-end",
-  },
-  wrapper: {
-    paddingBottom: 50,
-    paddingHorizontal: 20,
-    alignItems: "center",
+  imageBackground: {
+    width: "100%",
+    height: windowHeight(300),
+    marginBottom: windowHeight(40),
+    resizeMode: "stretch",
   },
   title: {
-    fontSize: 22,
-    color: Colors.primary,
-    fontWeight: "700",
-    letterSpacing: 2.4,
-    marginBottom: 5,
+    ...commonStyles.mediumText23,
+    marginTop: windowHeight(25),
+    ...external.ti_center,
   },
   description: {
-    fontSize: 14,
-    color: Colors.gray,
-    letterSpacing: 1.2,
-    lineHeight: 30,
-    marginBottom: 20,
+    ...commonStyles.regularText,
+    paddingTop: windowHeight(12),
+    width: "75%",
+    ...external.as_center,
+    fontSize: fontSizes.FONT19,
+    lineHeight: windowHeight(17),
+    ...external.ti_center,
   },
-  socialLoginWrapper: {
-    alignSelf: "stretch",
-  },
-  button: {
-    flexDirection: "row",
-    padding: 10,
-    borderColor: Colors.gray,
-    borderWidth: StyleSheet.hairlineWidth,
+  backArrow: {
+    width: windowHeight(34),
+    height: windowHeight(34),
+    borderRadius: windowHeight(34),
+    backgroundColor: color.buttonBg,
     alignItems: "center",
     justifyContent: "center",
-    gap: 5,
-    marginBottom: 15,
+    alignSelf: "center",
+    bottom: 0,
+    position: "absolute",
   },
-  btnTxt: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: Colors.black,
+  img: {
+    width: "100%",
+    height: windowHeight(180),
+    marginBottom: windowHeight(45),
   },
-  loginText: {
-    marginTop: 30,
-    fontSize: 14,
-    color: Colors.black,
-    lineHeight: 24,
+  activeStyle: {
+    width: "7%",
+    backgroundColor: color.buttonBg,
   },
-  loginTxtSpan: {
-    color: Colors.primary,
-    fontWeight: "600",
+  paginationStyle: {
+    height: "25%",
+  },
+  imageBgView: {
+    ...commonStyles.flexContainer,
+    ...external.js_end,
+  },
+  flagImage: {
+    height: windowHeight(20),
+    width: windowWidth(30),
+    borderRadius: 15,
+  },
+  downArrow: {
+    paddingVertical: windowHeight(4),
+    paddingHorizontal: windowWidth(5),
+  },
+  dropdownManu: {
+    borderRadius: 5,
+    borderWidth: 0,
+  },
+  dropdownContainer: {
+    width: windowWidth(180),
+    borderWidth: 0,
+    color: color.alertRed,
+  },
+  labelStyle: {
+    fontFamily: fonts.medium,
+  },
+  dropdown: {
+    borderWidth: 0,
+    backgroundColor: "transparent",
+  },
+  skipText: {
+    color: color.regularText,
+    paddingVertical: windowHeight(4),
+    fontFamily: fonts.regular,
   },
 });

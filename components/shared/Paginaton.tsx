@@ -1,4 +1,4 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import { StyleSheet, Text, View, ViewToken } from "react-native";
 type Props = {
   images: string[];
@@ -20,7 +20,9 @@ const Pagination = (props: Props) => {
       ))}
       <View style={styles.paginationNumberContainer}>
         <View style={styles.paginationNumberBox}>
-            <Text style={styles.paginationText}>${props.index}/${props.images.length}</Text>
+          <Text style={styles.paginationText}>
+            ${props.index +1}/${props.images.length}
+          </Text>
         </View>
       </View>
     </View>

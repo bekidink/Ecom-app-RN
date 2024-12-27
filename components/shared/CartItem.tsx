@@ -1,7 +1,14 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import { CartItemType } from "@/types/type";
 import { Ionicons } from "@expo/vector-icons";
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 type Props = {
   item: CartItemType;
 };
@@ -73,7 +80,7 @@ const styles = StyleSheet.create({
   itemControllerWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent:"space-between"
+    justifyContent: "space-between",
   },
   quantityControllerWrapper: {
     flexDirection: "row",

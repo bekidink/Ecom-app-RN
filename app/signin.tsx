@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Link, router, Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import SocialButton from "@/components/shared/SocialButton";
 import InputField from "@/components/shared/InputField";
 
@@ -20,7 +20,7 @@ const SignInScreen = (props: Props) => {
       <Stack.Screen
         options={{
           headerTitle: "SignIn",
-          headerTitleAlign:'center',
+          headerTitleAlign: "center",
           headerLeft: () => (
             <Pressable onPress={() => router.back()}>
               <Ionicons name="close" size={14} color={Colors.black} />

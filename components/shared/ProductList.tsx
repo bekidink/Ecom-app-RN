@@ -1,4 +1,4 @@
-import { productsData } from "@/constants copy/dummyData";
+import { productsData } from "@/constants/dummyData";
 import { ProductType } from "@/types/type";
 import { useState } from "react";
 import {
@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import ProductItem from "./ProductItem";
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 type Props = {
   products: ProductType[];
   flatList: boolean;
@@ -40,7 +40,7 @@ const ProductList = ({ products, flatList = true }: Props) => {
         <View style={styles.itemsWrapper}>
           {products.map((item, index) => (
             <View style={styles.productWrapper} key={index}>
-              <ProductItem item={item} index={index} productType="regular"/>
+              <ProductItem item={item} index={index} productType="regular" />
             </View>
           ))}
         </View>

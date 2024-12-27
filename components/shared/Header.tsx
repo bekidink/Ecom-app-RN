@@ -1,4 +1,4 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -9,7 +9,7 @@ const Header = (props: Props) => {
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <Text style={styles.logo}>BK</Text>
-      <Link href={"/(tabs)/explore"} asChild>
+      <Link href={"/(home)/explore"} asChild>
         <TouchableOpacity style={styles.searchBar}>
           <Text style={styles.searchTxt}>Search</Text>
           <Ionicons name="search-outline" size={20} color={Colors.gray} />

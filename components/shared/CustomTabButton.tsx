@@ -1,5 +1,5 @@
-import { Colors } from "@/constants copy/Colors";
-import { icon } from "@/constants copy/icons";
+import { Colors } from "@/constants/Colors";
+import { icon } from "@/constants/icons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type Props = {
@@ -17,11 +17,11 @@ const TabBarButton = (props: Props) => {
       onLongPress={onLongPress}
       style={styles.tabBtn}
     >
-        {routeName=='cart' && (
-            <View style={styles.badgeWrapper}>
-                <Text style={styles.badgeText}>3</Text>
-            </View>
-        )}
+      {routeName == "cart" && (
+        <View style={styles.badgeWrapper}>
+          <Text style={styles.badgeText}>3</Text>
+        </View>
+      )}
       {icon[routeName]({ color: isFocused ? "#673ab7" : "#22" })}
       <Text style={{ color: isFocused ? "#63ab7" : "#222" }}>{label}</Text>
     </Pressable>
@@ -35,18 +35,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
   },
-  badgeWrapper:{
-    position:'absolute',
-    backgroundColor:Colors.highlight,
-    top:-5,
-    right:20,
-    paddingVertical:2,
-    paddingHorizontal:6,
-    borderRadius:10,
-    zIndex:10
+  badgeWrapper: {
+    position: "absolute",
+    backgroundColor: Colors.highlight,
+    top: -5,
+    right: 20,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
+    borderRadius: 10,
+    zIndex: 10,
   },
-  badgeText:{
-    color:Colors.black,
-    fontSize:12
-  }
+  badgeText: {
+    color: Colors.black,
+    fontSize: 12,
+  },
 });

@@ -1,4 +1,4 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import React from "react";
 import { TextInput, StyleSheet } from "react-native";
 
@@ -8,8 +8,6 @@ const InputField = (props: React.ComponentProps<typeof TextInput>) => {
 };
 export default InputField;
 const styles = StyleSheet.create({
-  
-  
   inputField: {
     backgroundColor: Colors.white,
     paddingVertical: 12,
@@ -18,7 +16,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 16,
     color: Colors.black,
-    marginTop:10
+    marginTop: 10,
   },
-  
 });

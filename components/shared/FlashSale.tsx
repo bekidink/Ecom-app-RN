@@ -1,5 +1,5 @@
-import { Colors } from "@/constants copy/Colors";
-import { ProductType } from "@/types/type";
+import { Colors } from "@/constants/Colors";
+import { ProductType, SaleItemType } from "@/types/type";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import {
@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import ProductItem from "./ProductItem";
 type Props = {
-  products: ProductType[];
+  products: SaleItemType[];
 };
 const FlashSale = ({ products }: Props) => {
   const saleEndDate = new Date();
@@ -77,7 +77,7 @@ const FlashSale = ({ products }: Props) => {
         contentContainerStyle={{ marginLeft: 20 }}
         renderItem={({ item, index }) => (
           <View style={{ marginRight: 20 }}>
-            <ProductItem index={index} item={item} productType="sale" />
+            <ProductItem index={index} item={item.product} productType="sale" saleId={item.id} />
           </View>
         )}
       />

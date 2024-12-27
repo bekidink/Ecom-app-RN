@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { Link, router, Stack } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import InputField from "@/components/shared/InputField";
 import SocialButton from "@/components/shared/SocialButton";
 
@@ -57,8 +57,8 @@ const SignUpScreen = (props: Props) => {
             </TouchableOpacity>
           </Link>
         </Text>
-        <View style={styles.divider}/>
-        <SocialButton emailHref={'/signin'}/>
+        <View style={styles.divider} />
+        <SocialButton emailHref={"/signin"} />
       </View>
     </>
   );
@@ -124,5 +124,4 @@ const styles = StyleSheet.create({
     width: "30%",
     marginBottom: 30,
   },
-  
 });

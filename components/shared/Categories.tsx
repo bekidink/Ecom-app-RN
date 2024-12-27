@@ -1,6 +1,13 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import { CategoryType } from "@/types/type";
-import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 type Props = {
   categories: CategoryType[];
 };
@@ -13,20 +20,26 @@ const Categories = ({ categories }: Props) => {
           <Text style={styles.titleBtn}>See All</Text>
         </TouchableOpacity>
       </View>
-      <FlatList data={categories} horizontal showsHorizontalScrollIndicator={false} keyExtractor={(item)=>item.id.toString()} renderItem={({item,index})=>(
-        <View style={styles.item}>
-            <Image source={{uri:item.image}} style={styles.itemImg}/>
+      <FlatList
+        data={categories}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item, index }) => (
+          <View style={styles.item}>
+            <Image source={{ uri: item.image }} style={styles.itemImg} />
             <Text>{item.name}</Text>
-            </View>
-      )}/>
+          </View>
+        )}
+      />
     </View>
   );
 };
 export default Categories;
 const styles = StyleSheet.create({
-    container:{
-        marginBottom:20
-    },
+  container: {
+    marginBottom: 20,
+  },
   titleWrapper: {
     flexDirection: "row",
     justifyContent: "space-between",

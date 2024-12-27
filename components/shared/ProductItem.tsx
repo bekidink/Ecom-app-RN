@@ -1,4 +1,4 @@
-import { Colors } from "@/constants copy/Colors";
+import { Colors } from "@/constants/Colors";
 import { ProductType } from "@/types/type";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
@@ -8,15 +8,17 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 type Props = {
   item: ProductType;
   index: number;
-  productType:"sale"|"regular"
+  productType: "sale" | "regular";
+  saleId?:string
 };
 const width = Dimensions.get("window").width - 40;
-const ProductItem = ({ item, index,productType }: Props) => {
+const ProductItem = ({ item, index, productType,saleId }: Props) => {
+  const id=saleId?saleId:item.id
   return (
     <Link
       href={{
-        pathname: "/product-details/[id]",
-        params: { id: item.id,productType:productType },
+        pathname: "/(product)/[id]",
+        params: { id:id, productType: productType },
       }}
       asChild
     >
